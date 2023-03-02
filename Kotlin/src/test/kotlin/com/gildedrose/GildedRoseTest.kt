@@ -24,6 +24,17 @@ internal class GildedRoseTest {
     }
 
     @Test
+    fun `the quality should be lowered at the end of the day`() {
+        //given
+        val theItem = Item("foo", sellIn = 2, quality = 10)
+        val app = GildedRose(listOf(theItem))
+        //when
+        app.updateQuality()
+        //then
+        assertEquals(9, theItem.quality)
+    }
+
+    @Test
     fun `legacy simulatoin should work as it worked before`() {
         val items = listOf(Item("+5 Dexterity Vest", 10, 20), //
             Item("Aged Brie", 2, 0), //

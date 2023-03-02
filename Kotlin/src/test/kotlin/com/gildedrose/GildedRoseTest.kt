@@ -29,7 +29,6 @@ internal class GildedRoseTest {
 
         val app = GildedRose(items)
 
-        //TODO: check the result day 0
         val expectedDay0 = """
             +5 Dexterity Vest, 10, 20
             Aged Brie, 2, 0

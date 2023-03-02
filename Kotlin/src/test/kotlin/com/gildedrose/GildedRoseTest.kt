@@ -47,21 +47,19 @@ internal class GildedRoseTest {
 
         app.updateQuality()
 
-        // TODO: check the result day 1
+        val expectedDay1 = """
+            +5 Dexterity Vest, 9, 19
+            Aged Brie, 1, 1
+            Elixir of the Mongoose, 4, 6
+            Sulfuras, Hand of Ragnaros, 0, 80
+            Sulfuras, Hand of Ragnaros, -1, 80
+            Backstage passes to a TAFKAL80ETC concert, 14, 21
+            Backstage passes to a TAFKAL80ETC concert, 9, 50
+            Backstage passes to a TAFKAL80ETC concert, 4, 50
+            Conjured Mana Cake, 2, 5
+        """.trimIndent()
 
-        val days = 2
-
-//        for (i in 0..days - 1) {
-//            println("-------- day $i --------")
-//            println("name, sellIn, quality")
-//            for (item in items) {
-//                println(item)
-//            }
-//            println()
-//            app.updateQuality()
-//        }
-
-        // assertions
+        assertEquals(expectedDay1, items.map { it.toString() }.joinToString(separator = "\n") )
 
     }
 

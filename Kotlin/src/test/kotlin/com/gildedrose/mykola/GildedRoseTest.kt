@@ -2,6 +2,7 @@ package com.gildedrose.mykola
 
 import com.gildedrose.GildedRose
 import com.gildedrose.Item
+import com.gildedrose.Sulfuras
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Disabled
@@ -71,6 +72,13 @@ class GildedRoseTest {
         val item = Item("Aged Brie", sellIn = 1, quality = 50)
         GildedRose(listOf(item)).updateQuality()
         assertThat(item.quality).isEqualTo(50)
+    }
+
+    @Test
+    fun `Sulfuras, being a legendary item, never has to be sold or decreases in Quality`() {
+        val item = Item(Sulfuras, sellIn = 1, quality = 10)
+        GildedRose(listOf(item)).updateQuality()
+        assertThat(item.quality).isEqualTo(10)
     }
 
     @Test

@@ -40,7 +40,6 @@ class GildedRoseTest {
     }
 
     @Test
-    @Disabled //TODO: implement me.
     fun `Conjured items degrade in Quality twice as fast as normal items`() {
         assertThat(
             Item("Conjured Mana Cake", sellIn = 2, quality = 10)

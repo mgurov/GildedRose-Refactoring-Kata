@@ -5,8 +5,8 @@ class GildedRose(var items: List<Item>) {
     fun updateQuality() {
         for (i in items.indices) {
             val item = items[i]
-            //updateDailyQuantity(item)
-            updateDailyQuantityLegacy(item)
+            updateDailyQuantity(item)
+            //updateDailyQuantityLegacy(item)
         }
     }
 
@@ -42,9 +42,7 @@ class GildedRose(var items: List<Item>) {
             }
         }
 
-        if (item.name != Sulfuras) {
-            item.sellIn = item.sellIn - 1
-        }
+        item.sellIn = item.sellIn - 1
 
         if (item.sellIn < 0) {
             if (item.name != AgedBrie) {

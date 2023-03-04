@@ -37,6 +37,13 @@ class GildedRoseTest {
     }
 
     @Test
+    fun `quality of an item is never negative`() {
+        val item = Item("foo", sellIn = 0, quality = 0)
+        GildedRose(listOf(item)).updateQuality()
+        assertThat(item.quality).isEqualTo(0)
+    }
+
+    @Test
     fun `the quality should be lowered at the end of the day`() {
         //given
         val theItem = Item("foo", sellIn = 2, quality = 10)

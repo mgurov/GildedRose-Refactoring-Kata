@@ -40,6 +40,17 @@ class GildedRoseTest {
     }
 
     @Test
+    fun `Conjured items degrade in Quality twice as fast as normal items`() {
+        assertThat(
+            Item("Conjured foo", sellIn = 2, quality = 10)
+                .exhaust()
+        ).containsExactly(
+            10, 9, 8, 6, 4, 2, 0,
+            10, 9, 6, 2, 0,
+        )
+    }
+
+    @Test
     fun `quality of an item is never negative`() {
         val item = Item("foo", sellIn = 0, quality = 0)
         GildedRose(listOf(item)).updateQuality()
@@ -218,10 +229,13 @@ private fun Item.exhaust(): List<Int> {
     while (true) {
         val todayQuantity = this.quality
         result += todayQuantity
+        app.updateQuality()
         if (0 == todayQuantity)  {
+            assertThat(this.quality)
+                .describedAs("Never expect quantity to change after reached 0") //TODO: exception the aged brie and backstage passes.... damn.
+                .isEqualTo(0)
             return result
         }
-        app.updateQuality()
     }
 }
 

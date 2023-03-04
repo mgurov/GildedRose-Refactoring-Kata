@@ -44,6 +44,20 @@ class GildedRoseTest {
     }
 
     @Test
+    fun `Aged Brie actually increases in Quality the older it gets`() {
+        val item = Item("Aged Brie", sellIn = 1, quality = 0)
+        GildedRose(listOf(item)).updateQuality()
+        assertThat(item.quality).isEqualTo(1)
+    }
+
+    @Test
+    fun `Aged Brie ages twice as fast after expiration apparently`() {
+        val item = Item("Aged Brie", sellIn = 0, quality = 0)
+        GildedRose(listOf(item)).updateQuality()
+        assertThat(item.quality).isEqualTo(2)
+    }
+
+    @Test
     fun `the quality should be lowered at the end of the day`() {
         //given
         val theItem = Item("foo", sellIn = 2, quality = 10)

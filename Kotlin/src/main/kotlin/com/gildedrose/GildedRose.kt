@@ -16,13 +16,7 @@ class GildedRose(var items: List<Item>) {
             return // Sulfuras is a legendary item. TODO: enforce 80!
         }
 
-        if (item.name != AgedBrie && item.name != BackstagePasses) {
-            if (item.quality > 0) {
-                if (item.name != Sulfuras) {
-                    item.quality = item.quality - 1
-                }
-            }
-        } else {
+        if (item.name == AgedBrie || item.name == BackstagePasses) {
             if (item.quality < 50) {
                 item.quality = item.quality + 1
 
@@ -39,6 +33,10 @@ class GildedRose(var items: List<Item>) {
                         }
                     }
                 }
+            }
+        } else {
+            if (item.quality > 0) {
+                item.quality = item.quality - 1
             }
         }
 

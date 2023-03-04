@@ -1,6 +1,7 @@
 package com.gildedrose
 
 typealias SellInDelta = (sellIn: Int, quality: Int) -> Int
+val defaultDepreciation: SellInDelta = { sellIn, _ -> if (sellIn >= 0) -1 else -2 } //by default depreciation 1 by default, -2 after deadline
 
 class GildedRose(var items: List<Item>) {
 
@@ -33,7 +34,8 @@ class GildedRose(var items: List<Item>) {
                 }
             }
             item.name == AgedBrie -> { sellIn, _ -> if (sellIn >= 0) 1 else 2 }
-            else -> { sellIn, _ -> if (sellIn >= 0) -1 else -2 } //by default depreciation 1 by default, -2 after deadline
+            item.name.startsWith("Conjured") -> { sellIn, quality -> defaultDepreciation(sellIn, quality) * 2 }
+            else -> defaultDepreciation
         }
 
         val delta = sellInDelta(item.sellIn, item.quality)

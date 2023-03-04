@@ -45,7 +45,7 @@ class GildedRoseTest {
             Item("Conjured Mana Cake", sellIn = 2, quality = 10)
                 .exhaust()
         ).containsExactly(
-            10, 9, 6, 2, 0,
+            10, 8, 6, 2, 0,
         )
     }
 
@@ -173,7 +173,7 @@ class GildedRoseTest {
                 Backstage passes to a TAFKAL80ETC concert, 14, 21
                 Backstage passes to a TAFKAL80ETC concert, 9, 50
                 Backstage passes to a TAFKAL80ETC concert, 4, 50
-                Conjured Mana Cake, 2, 5
+                Conjured Mana Cake, 2, 4
             """.trimIndent(), items.map { it.toString() }.joinToString(separator = "\n")
         )
 
@@ -189,7 +189,7 @@ class GildedRoseTest {
                 Backstage passes to a TAFKAL80ETC concert, 13, 22
                 Backstage passes to a TAFKAL80ETC concert, 8, 50
                 Backstage passes to a TAFKAL80ETC concert, 3, 50
-                Conjured Mana Cake, 1, 4
+                Conjured Mana Cake, 1, 2
             """.trimIndent(), items.map { it.toString() }.joinToString(separator = "\n")
         )
 
@@ -205,7 +205,7 @@ class GildedRoseTest {
                 Backstage passes to a TAFKAL80ETC concert, 12, 23
                 Backstage passes to a TAFKAL80ETC concert, 7, 50
                 Backstage passes to a TAFKAL80ETC concert, 2, 50
-                Conjured Mana Cake, 0, 3
+                Conjured Mana Cake, 0, 0
             """.trimIndent(), items.map { it.toString() }.joinToString(separator = "\n")
         )
 
@@ -221,7 +221,7 @@ class GildedRoseTest {
             Backstage passes to a TAFKAL80ETC concert, 11, 24
             Backstage passes to a TAFKAL80ETC concert, 6, 50
             Backstage passes to a TAFKAL80ETC concert, 1, 50
-            Conjured Mana Cake, -1, 1
+            Conjured Mana Cake, -1, 0
             """.trimIndent(), items.map { it.toString() }.joinToString(separator = "\n")
         )
 

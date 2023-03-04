@@ -2,6 +2,7 @@ package com.gildedrose.mykola
 
 import com.gildedrose.GildedRose
 import com.gildedrose.Item
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -23,6 +24,16 @@ class GildedRoseTest {
         assertEquals("foo, 2, 10", theItem.toString())
         app.updateQuality()
         assertEquals("foo, 1, 9", theItem.toString())
+    }
+
+    @Test
+    fun `Once the sell by date has passed, Quality degrades twice as fast`() {
+        assertThat(
+            Item("foo", sellIn = 2, quality = 10)
+                .exhaust()
+        ).containsExactly(
+            10, 9, 8, 6, 4, 2, 0
+        )
     }
 
     @Test
@@ -132,6 +143,20 @@ class GildedRoseTest {
 
     }
 
+}
+
+//TODO: assumes we never go below zero.
+private fun Item.exhaust(): List<Int> {
+    val app = GildedRose(listOf(this))
+    val result = mutableListOf<Int>()
+    while (true) {
+        val todayQuantity = this.quality
+        result += todayQuantity
+        if (0 == todayQuantity)  {
+            return result
+        }
+        app.updateQuality()
+    }
 }
 
 

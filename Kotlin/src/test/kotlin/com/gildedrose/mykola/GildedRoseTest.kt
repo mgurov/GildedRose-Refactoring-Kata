@@ -86,7 +86,7 @@ class GildedRoseTest {
         assertThat(item.quality).isEqualTo(50)
     }
 
-    @Test
+    @Test //TODO:  Quality is 80 and it never alters
     fun `Sulfuras, being a legendary item, never has to be sold or decreases in Quality`() {
         val item = Item(Sulfuras, sellIn = 1, quality = 10)
         GildedRose(listOf(item)).updateQuality()

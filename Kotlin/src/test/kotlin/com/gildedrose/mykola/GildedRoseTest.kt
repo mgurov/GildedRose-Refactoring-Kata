@@ -58,7 +58,7 @@ class GildedRoseTest {
         assertThat(item.quality).isEqualTo(2)
     }
 
-    @Disabled //TODO: fixme
+    @Disabled //TODO: fixme maybe?
     @Test
     fun `The Quality of an item is never more than 50`() {
         val item = Item("foo", sellIn = 1, quality = 100)

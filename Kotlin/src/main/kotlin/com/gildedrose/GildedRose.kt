@@ -57,6 +57,6 @@ class GildedRose(var items: List<Item>) {
 
 const val Sulfuras = "Sulfuras, Hand of Ragnaros"
 const val AgedBrie = "Aged Brie"
-const val BackstagePasses = "Backstage passes to a TAFKAL80ETC concert"
+const val BackstagePasses = "Backstage passes to a TAFKAL80ETC concert" //TODO: make reusable?
 
 

@@ -1,5 +1,7 @@
 package com.gildedrose
 
+typealias SellInDelta = (sellIn: Int) -> Int
+
 class GildedRose(var items: List<Item>) {
 
     fun updateQuality() {
@@ -17,6 +19,13 @@ class GildedRose(var items: List<Item>) {
         }
 
         item.sellIn = item.sellIn - 1
+
+        val sellInDelta: SellInDelta = TODO()
+
+        item.quality += (item.quality + sellInDelta(item.sellIn)).coerceAtLeast(0).coerceAtMost(50)
+        if (true) {
+            return
+        }
 
         if (item.name == AgedBrie || item.name == BackstagePasses) {
             if (item.quality < 50) {

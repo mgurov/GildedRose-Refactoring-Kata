@@ -43,7 +43,7 @@ class GildedRoseTest {
     @Disabled //TODO: implement me.
     fun `Conjured items degrade in Quality twice as fast as normal items`() {
         assertThat(
-            Item("Conjured foo", sellIn = 2, quality = 10)
+            Item("Conjured Mana Cake", sellIn = 2, quality = 10)
                 .exhaust()
         ).containsExactly(
             10, 9, 6, 2, 0,

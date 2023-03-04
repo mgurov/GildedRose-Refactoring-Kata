@@ -4,6 +4,7 @@ import com.gildedrose.GildedRose
 import com.gildedrose.Item
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 class GildedRoseTest {
@@ -55,6 +56,21 @@ class GildedRoseTest {
         val item = Item("Aged Brie", sellIn = 0, quality = 0)
         GildedRose(listOf(item)).updateQuality()
         assertThat(item.quality).isEqualTo(2)
+    }
+
+    @Disabled //TODO: fixme
+    @Test
+    fun `The Quality of an item is never more than 50`() {
+        val item = Item("foo", sellIn = 1, quality = 100)
+        GildedRose(listOf(item)).updateQuality()
+        assertThat(item.quality).isEqualTo(50)
+    }
+
+    @Test
+    fun `The Quality of an item is never more than 50 - the case of the aged brie`() {
+        val item = Item("Aged Brie", sellIn = 1, quality = 50)
+        GildedRose(listOf(item)).updateQuality()
+        assertThat(item.quality).isEqualTo(50)
     }
 
     @Test

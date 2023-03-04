@@ -1,5 +1,6 @@
 package com.gildedrose.mykola
 
+import com.gildedrose.BackstagePasses
 import com.gildedrose.GildedRose
 import com.gildedrose.Item
 import com.gildedrose.Sulfuras
@@ -79,6 +80,26 @@ class GildedRoseTest {
         val item = Item(Sulfuras, sellIn = 1, quality = 10)
         GildedRose(listOf(item)).updateQuality()
         assertThat(item.quality).isEqualTo(10)
+    }
+
+    @Test
+    fun `Backstage passes quality increases closer to the concert and then drops to zero`() {
+        /**
+         *  "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
+        Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
+        Quality drops to 0 after the concert
+         */
+
+        assertThat(
+            Item(BackstagePasses, sellIn = 12, quality = 10)
+                .exhaust()
+        ).containsExactly(
+            10, 11, 12, // days 13, 12, 11 before concert
+            14, 16, 18, 20, 22, // days 10 - 6
+            25, 28, 31, 34, 37, 0 // days 5-0 TODO: drop on 0 or one day after?
+        )
+
+
     }
 
     @Test

@@ -91,6 +91,14 @@ class GildedRoseTest {
         val item = Item(Sulfuras, sellIn = 1, quality = 10)
         GildedRose(listOf(item)).updateQuality()
         assertThat(item.quality).isEqualTo(10)
+        assertThat(item.sellIn).isEqualTo(1)
+    }
+
+    @Test
+    fun `normal items are to be sold`() {
+        val item = Item("a normal item", sellIn = 1, quality = 10)
+        GildedRose(listOf(item)).updateQuality()
+        assertThat(item.sellIn).isEqualTo(0)
     }
 
     @Test

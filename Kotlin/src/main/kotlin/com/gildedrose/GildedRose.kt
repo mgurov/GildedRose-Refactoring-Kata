@@ -10,6 +10,11 @@ class GildedRose(var items: List<Item>) {
     }
 
     private fun updateDailyQuantity(item: Item) {
+
+        if (item.name == Sulfuras) {
+            return // Sulfuras is a legendary item. TODO: enforce 80!
+        }
+
         if (item.name != AgedBrie && item.name != BackstagePasses) {
             if (item.quality > 0) {
                 if (item.name != Sulfuras) {
